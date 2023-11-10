@@ -87,6 +87,7 @@ namespace Perl.Commands
                                     Faculty faculty = new Faculty(record.ID, record.Name);
                                     course.AddFacultyAssignment(faculty);
                                 }
+                                QueryStore.AddCourse(course);
                             }
 
                         }
