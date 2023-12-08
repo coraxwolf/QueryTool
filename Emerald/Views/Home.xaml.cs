@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,16 +14,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Perl.Components
+namespace Emerald.Views
 {
-    /// <summary>
-    /// Interaction logic for QueryDataPanel.xaml
-    /// </summary>
-    public partial class QueryDataPanel : UserControl
+  /// <summary>
+  /// Interaction logic for Home.xaml
+  /// </summary>
+  public partial class Home : UserControl
+  {
+    public Home()
     {
-        public QueryDataPanel()
-        {
-            InitializeComponent();
-        }
+      InitializeComponent();
     }
+  }
 }

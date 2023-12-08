@@ -13,7 +13,7 @@ namespace Perl.Models
         public string? CanvasName { get; set; }
         public Int32? CanvasCode { get; set; }
 
-        public Faculty(string facultyName, string facultyNo, string? canvasName = null, int? canvasCode = null)
+        public Faculty(string facultyNo, string facultyName, string? canvasName = null, int? canvasCode = null)
         {
             FacultyName = facultyName;
             FacultyNo = facultyNo;

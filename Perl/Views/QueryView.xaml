@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Perl.Views"
-             xmlns:components="clr-namespace:Perl.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid
@@ -32,8 +31,8 @@
                 FontSize="32"
                 FontWeight="Bold"
                 Text="EO Query Tool"/>
-            <StackPanel Grid.Column="2">
                 <Button
+                    Grid.Column="2"
                     FontFamily="{DynamicResource Heading}"
                     FontSize="24"
                     FontWeight="SemiBold"
@@ -41,7 +40,6 @@
                     Content="Course Lists"
                     Margin="20"
                     Padding="10"/>
-            </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -51,10 +49,47 @@
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Button
+                <StackPanel
+                    Grid.Column="0"
+                    Orientation="Horizontal">
+                    <TextBlock
+                            FontFamily="{DynamicResource Heading}"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Padding="10"
+                            Margin="10"
+                            Text="Courses: "/>
+                    <TextBlock
+                            FontFamily="{DynamicResource Heading}"
+                            FontSize="18"
+                            FontWeight="SemiBold"
+                            Margin="5 0 0 0"
+                            Padding="20"
+                            Text="{Binding CourseCount, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel
                     Grid.Column="1"
+                    Orientation="Horizontal">
+                    <TextBlock
+                            FontFamily="{DynamicResource Heading}"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Padding="10"
+                            Margin="10"
+                            Text="Faculty: "/>
+                    <TextBlock
+                            FontFamily="{DynamicResource Heading}"
+                            FontSize="18"
+                            FontWeight="SemiBold"
+                            Margin="5 0 0 0"
+                            Padding="20"
+                            Text="{Binding FacultyCount, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <Button
+                    Grid.Column="2"
                     Margin="8"
                     Padding="5"
                     Background="{DynamicResource MemorialGreenBrush}"
@@ -64,25 +99,19 @@
                     Content="Load Query"
                     Command="{Binding LoadQueryCommand}"/>
             </Grid>
-            <TabControl 
+            <ListView
                 Grid.Row="1"
                 Margin="10"
                 Padding="5">
-                <TabItem
-                    FontFamily="{DynamicResource Heading}"
-                    FontSize="18"
-                    FontWeight="SemiBold"
-                    Header="Query Data">
-                    <components:QueryDataPanel DataContext="{Binding QueryPanelViewModel}"/>
-                </TabItem>
-                <TabItem
-                    FontFamily="{DynamicResource Heading}"
-                    FontSize="18"
-                    FontWeight="SemiBold"
-                    Header="Changes">
-                    <components:ChangesPanel DataContext="{Binding ChangePanelViewModel}"/>
-                </TabItem>
-            </TabControl>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding TypeofChange}"/>
+                        <GridViewColumn Header="Course" DisplayMemberBinding="{Binding Course}"/>
+                        <GridViewColumn Header="Faculty" DisplayMemberBinding="{Binding Faculty}"/>
+                        <GridViewColumn Header="Change" DisplayMemberBinding="{Binding Note}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
     </Grid>

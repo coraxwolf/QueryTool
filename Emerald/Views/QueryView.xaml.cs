@@ -13,16 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Perl.Components
+namespace Emerald.Views
 {
-    /// <summary>
-    /// Interaction logic for ChangesPanel.xaml
-    /// </summary>
-    public partial class ChangesPanel : UserControl
+  /// <summary>
+  /// Interaction logic for QueryView.xaml
+  /// </summary>
+  public partial class QueryView : UserControl
+  {
+    public QueryView()
     {
-        public ChangesPanel()
-        {
-            InitializeComponent();
-        }
+      InitializeComponent();
     }
+  }
 }

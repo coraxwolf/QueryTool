@@ -1,4 +1,5 @@
 ﻿using Perl.Commands;
+using Perl.Models;
 using Perl.Stores;
 using System;
 using System.Collections.Generic;
@@ -9,21 +10,26 @@ using System.Windows.Input;
 
 namespace Perl.ViewModels
 {
-    public class QueryViewModel : ViewModelBase
-    {
-        private QueryStore QueryStore;
+  public class QueryViewModel : ViewModelBase
+  {
+    private QueryStore QueryStore;
 
-        public ICommand NavigateListingCommand { get; }
-        public ICommand LoadQueryCommand { get; }
-        public QueryPanelViewModel QueryPanelViewModel { get; }
-        public ChangesPanelViewModel ChangePanelViewModel { get; }
-        public QueryViewModel(QueryStore queryStore)
-        {
-            QueryStore = queryStore;
-            QueryPanelViewModel = new QueryPanelViewModel(QueryStore);
-            ChangePanelViewModel = new ChangesPanelViewModel(QueryStore);
-            NavigateListingCommand = new QueryLoadCommand(QueryStore);
-            LoadQueryCommand = new QueryLoadCommand(QueryStore);
-        }
+    public ICommand NavigateListingCommand { get; }
+    public ICommand LoadQueryCommand { get; }
+    public Int32 CourseCount { get => QueryStore.Courses.Count(); }
+    public Int32 FacultyCount { get => QueryStore.Faculty.Count(); }
+    public IEnumerable<ChangeRecord> ChangeRecords { get => QueryStore.Changes; }
+    public QueryViewModel(QueryStore queryStore)
+    {
+      QueryStore = queryStore;
+      NavigateListingCommand = new QueryLoadCommand(QueryStore);
+      LoadQueryCommand = new QueryLoadCommand(QueryStore);
+      QueryStore.QueryRecordChanged += QueryStore_QueryRecordChanged;
     }
+
+    private void QueryStore_QueryRecordChanged()
+    {
+      OnPropertyChanged(nameof(QueryStore));
+    }
+  }
 }

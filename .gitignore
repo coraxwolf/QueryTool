@@ -266,6 +266,9 @@ ServiceFabricBackup/
 *.ldf
 *.ndf
 
+# DB Context Factory
+CourseListDesignTimeDbContextFactory.cs
+
 # Business Intelligence projects
 *.rdl.data
 *.bim.layout
